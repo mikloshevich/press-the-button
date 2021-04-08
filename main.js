@@ -53,17 +53,17 @@ btn.addEventListener('click', function(event) {
     w = window.innerWidth;
     h = window.innerHeight;
     pos = btn.getBoundingClientRect();
+    // console.log(pos);
 
     /*randomize position*/
     jumpX = random(100, w - 100);
     jumpY = random(100, h - 200);
-    let randPos = random(10, 50);
     // console.log(jumpX - pos.x);
     // console.log(jumpX, pos.x);
 
     if(Math.abs(jumpX - pos.x) < 50) {
         btn.style.left = 60 + 'px';
-        btn.style.top = 60 + 'px';
+        btn.style.top = 100 + 'px';
     }
     else {
         btn.style.left = jumpX + 'px';

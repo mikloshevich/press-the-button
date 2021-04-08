@@ -122,6 +122,8 @@ p {
 
 .button-field {
     display: flex;
+    position: relative;
+    overflow: hidden;
     /*justify-content: center;*/
     /*align-items: center;*/
     height: 100vh;
