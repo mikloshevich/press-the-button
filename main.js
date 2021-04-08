@@ -94,7 +94,7 @@ btn.addEventListener('click', function(event) {
         root.style.setProperty("--bd-color", '#ff1e23');
         root.style.setProperty("--animation-dur", '0.8s');
         btn.style.backgroundColor = '#ff1e23';
-        text.innerText = "Look, you pissed off the button!";
+        text.innerText = "Look, you pissed the button off!";
         textGrow(text);
     }
     else if(clicks==8) {
