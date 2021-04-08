@@ -55,20 +55,20 @@ btn.addEventListener('click', function(event) {
     pos = btn.getBoundingClientRect();
 
     /*randomize position*/
-    jumpX = random(50, w - 80);
-    jumpY = random(50, h - 200);
+    jumpX = random(100, w - 100);
+    jumpY = random(100, h - 200);
+    let randPos = random(10, 50);
     // console.log(jumpX - pos.x);
     // console.log(jumpX, pos.x);
 
     if(Math.abs(jumpX - pos.x) < 50) {
-        btn.style.left = 30 + 'px';
-        btn.style.top = 30 + 'px';
+        btn.style.left = 60 + 'px';
+        btn.style.top = 60 + 'px';
     }
     else {
         btn.style.left = jumpX + 'px';
         btn.style.top = jumpY + 'px';
     }
-    
 
     /*change text with each click*/
     if(clicks == 1) {
