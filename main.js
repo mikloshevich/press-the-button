@@ -62,10 +62,10 @@ btn.addEventListener('click', function(event) {
     btn.addEventListener('transitionend', function() {
         pos = btn.getBoundingClientRect();
         if (pos.right > w || pos.left < 0) {
-            btn.style.transform = 'translateX(0px)';
+            btn.style.transform = `translate(0px, 0px)`;
         }
         if (pos.bottom > h || pos.top < 0) {
-            btn.style.transform = 'translateY(0px)';
+            btn.style.transform = `translate(0px, 0px)`;
         }
     })
 
@@ -88,7 +88,7 @@ btn.addEventListener('click', function(event) {
             animation = requestAnimationFrame(repeatOften);
         }
         requestAnimationFrame(repeatOften);
-        btn.style.transform = 'translate(-100px, -100px)';
+        btn.style.transform = 'translate(-200px, -200px)';
         // btn.style.transform = 'translateY(0px)';
         root.style.setProperty("--bd-color", '#ff1e23');
         root.style.setProperty("--animation-dur", '0.8s');
@@ -124,13 +124,13 @@ btn.addEventListener('click', function(event) {
 
 function textGrow(item) {
     let size = 0;
-    let int = setInterval(frame, 20);
+    let int = setInterval(frame, 8);
     function frame() {
         if(size == 10) {
             clearInterval(int);
         }
         else {
-            size += 1;
+            size += 0.25;
             item.style.transform = 'scaleY('+ size / 10 +')';
         }
     }
