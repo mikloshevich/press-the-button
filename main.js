@@ -5,7 +5,7 @@ const face = document.querySelector(".face");
 const prize = document.querySelector(".prize");
 
 let message;
-let pos;
+let pos = btn.getBoundingClientRect();
 let jumpX;
 let jumpY;
 let clicks = 0;
@@ -53,22 +53,21 @@ btn.addEventListener('click', function(event) {
     w = window.innerWidth;
     h = window.innerHeight;
     pos = btn.getBoundingClientRect();
-    // console.log(pos);
 
     /*randomize position*/
-    jumpX = random(100, w - 100);
-    jumpY = random(100, h - 200);
-    // console.log(jumpX - pos.x);
-    // console.log(jumpX, pos.x);
+    jumpX = random(-w/2, w/2);
+    jumpY = random(-h/2, h/2);
 
-    if(Math.abs(jumpX - pos.x) < 50) {
-        btn.style.left = 60 + 'px';
-        btn.style.top = 100 + 'px';
-    }
-    else {
-        btn.style.left = jumpX + 'px';
-        btn.style.top = jumpY + 'px';
-    }
+    btn.style.transform = `translate(${jumpX}px, ${jumpY}px)`;
+    btn.addEventListener('transitionend', function() {
+        pos = btn.getBoundingClientRect();
+        if (pos.right > w || pos.left < 0) {
+            btn.style.transform = 'translateX(0px)';
+        }
+        if (pos.bottom > h || pos.top < 0) {
+            btn.style.transform = 'translateY(0px)';
+        }
+    })
 
     /*change text with each click*/
     if(clicks == 1) {
@@ -89,8 +88,8 @@ btn.addEventListener('click', function(event) {
             animation = requestAnimationFrame(repeatOften);
         }
         requestAnimationFrame(repeatOften);
-        btn.style.left = w/2 + 'px';
-        btn.style.top = h/2 + 'px';
+        btn.style.transform = 'translate(-100px, -100px)';
+        // btn.style.transform = 'translateY(0px)';
         root.style.setProperty("--bd-color", '#ff1e23');
         root.style.setProperty("--animation-dur", '0.8s');
         btn.style.backgroundColor = '#ff1e23';
@@ -100,8 +99,8 @@ btn.addEventListener('click', function(event) {
     else if(clicks==8) {
         cancelAnimationFrame(animation);
         btn.style.transform = 'scale(1)';
-        btn.style.left = 100 + 'px';
-        btn.style.top = 100 + 'px';
+        btn.style.transform = 'translate(0px, -200px)';
+        // btn.style.transform = 'translateY(-200px)';
         root.style.setProperty("--bd-color", '#006cff');
         root.style.setProperty("--animation-dur", '1.5s');
         btn.style.backgroundColor = '#006cff';

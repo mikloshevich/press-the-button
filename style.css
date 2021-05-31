@@ -149,9 +149,9 @@ p {
 
     background-color: #006cff;
     border-radius: 50%;
-    transform-origin: center; 
+    transform-origin: center;
 
-    transition: transform 0.1s ease;
+    transition: transform 0.7s cubic-bezier(0.25, 0.1, 0, 0.88);
 }
 
 /*@media (hover: hover) {
