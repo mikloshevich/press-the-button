@@ -57,15 +57,23 @@ btn.addEventListener('click', function(event) {
     /*randomize position*/
     jumpX = random(-w/2, w/2);
     jumpY = random(-h/2, h/2);
+    if (Math.abs(jumpX) < 100) {
+        jumpX = random(-w/2, w/2);
+    }
+    if (Math.abs(jumpY) < 100) {
+        jumpY = random(-h/2, h/2);
+    }
 
     btn.style.transform = `translate(${jumpX}px, ${jumpY}px)`;
     btn.addEventListener('transitionend', function() {
         pos = btn.getBoundingClientRect();
-        if (pos.right > w || pos.left < 0) {
-            btn.style.transform = `translate(0px, 0px)`;
+        jumpX = random(-w/2, w/2);
+        jumpY = random(-h/2, h/2);
+        if (pos.right > w + 25 || pos.left < -25) {
+            btn.style.transform = `translate(${jumpX}px, ${jumpY}px)`;
         }
-        if (pos.bottom > h || pos.top < 0) {
-            btn.style.transform = `translate(0px, 0px)`;
+        if (pos.bottom > h + 25 || pos.top < 50) {
+            btn.style.transform = `translate(${jumpX}px, ${jumpY}px)`;
         }
     })
 
@@ -83,13 +91,14 @@ btn.addEventListener('click', function(event) {
 
         /*button growing function*/
         function repeatOften() {
-            scale += 1 / 150;
+            scale += 1 / 100;
             btn.style.transform = 'scale(' + scale + ')';
             animation = requestAnimationFrame(repeatOften);
         }
         requestAnimationFrame(repeatOften);
-        btn.style.transform = 'translate(-200px, -200px)';
-        // btn.style.transform = 'translateY(0px)';
+        jumpX = random(-w/2, w/2);
+        jumpY = random(-h/2, h/2);
+        btn.style.transform = `translate(${jumpX}px, ${jumpY}px)`;
         root.style.setProperty("--bd-color", '#ff1e23');
         root.style.setProperty("--animation-dur", '0.8s');
         btn.style.backgroundColor = '#ff1e23';
@@ -99,8 +108,7 @@ btn.addEventListener('click', function(event) {
     else if(clicks==8) {
         cancelAnimationFrame(animation);
         btn.style.transform = 'scale(1)';
-        btn.style.transform = 'translate(0px, -200px)';
-        // btn.style.transform = 'translateY(-200px)';
+        btn.style.transform = `translate(${jumpX}px, ${jumpY}px)`;
         root.style.setProperty("--bd-color", '#006cff');
         root.style.setProperty("--animation-dur", '1.5s');
         btn.style.backgroundColor = '#006cff';
